@@ -1,6 +1,10 @@
 name: Daily Update
 
 on:
+  pull_request:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '45 21 * * *'
   workflow_dispatch:
