@@ -67,9 +67,9 @@ def fetch_channels(url):
                         channels[current_category].append((line, ''))
         if channels:
             categories = ", ".join(channels.keys())
-            logging.info(f"url: {url} 爬取成功✅，包含频道分类: {categories}")
+            logging.info(f"url: {url} 读取成功✅，包含频道分类: {categories}")
     except requests.RequestException as e:
-        logging.error(f"url: {url} 爬取失败❌, Error: {e}")
+        logging.error(f"url: {url} 读取失败❌, Error: {e}")
 
     return channels
 
@@ -150,10 +150,15 @@ def updateChannelUrlsM3U(channels, template_channels):
                                     base_url = url
 
                                 new_url = f"{base_url}{url_suffix}"
+                                if is_ipv6(url):
+                                    f_m3u.write(f"#EXTINF:-1 tvg-id=\"{index}\" tvg-name=\"{channel_name}(IPV6)\" tvg-logo=\"https://live.fanmingming.com/tv/{channel_name}.png\" group-title=\"{category}(IPV6)\",{channel_name}\n")
+                                    f_m3u.write(new_url + "\n")
+                                    f_txt.write(f"{channel_name}(IPV6),{new_url}\n")
+                                else:
+                                    f_m3u.write(f"#EXTINF:-1 tvg-id=\"{index}\" tvg-name=\"{channel_name}\" tvg-logo=\"https://live.fanmingming.com/tv/{channel_name}.png\" group-title=\"{category}\",{channel_name}\n")
+                                    f_m3u.write(new_url + "\n")
+                                    f_txt.write(f"{channel_name},{new_url}\n")
 
-                                f_m3u.write(f"#EXTINF:-1 tvg-id=\"{index}\" tvg-name=\"{channel_name}\" tvg-logo=\"https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/{channel_name}.png\" group-title=\"{category}\",{channel_name}\n")
-                                f_m3u.write(new_url + "\n")
-                                f_txt.write(f"{channel_name},{new_url}\n")
 
             f_txt.write("\n")
 
