@@ -140,7 +140,7 @@ def updateChannelUrlsM3U(channels, template_channels):
 
                             total_urls = len(filtered_urls)
                             if total_urls >= 1:
-                                f_m3u.write(f"#EXTINF:-1 tvg-id=\"{index}\" tvg-name=\"{channel_name}(IPV6)\" tvg-logo=\"https://live.fanmingming.com/tv/{channel_name}.png\" group-title=\"{category}(IPV6)\",{channel_name}\n")
+                                f_m3u.write(f"#EXTINF:-1 tvg-id=\"{index}\" tvg-name=\"{channel_name}\" tvg-logo=\"https://live.fanmingming.com/tv/{channel_name}.png\" group-title=\"{category}\",{channel_name}\n")
                             for index, url in enumerate(filtered_urls, start=1):
                                 if is_ipv6(url):
                                     url_suffix = f"$LR•IPV6" if total_urls == 1 else f"$LR•IPV6『线路{index}』"
