@@ -6,8 +6,6 @@ import logging
 import concurrent.futures
 from collections import OrderedDict
 from datetime import datetime
-
-from colorama import Style
 from tqdm import tqdm
 
 from config import config
@@ -137,11 +135,11 @@ def filter_source_urls(template_file):
                             else:
                                 all_channels[category] = channel_list
                     except concurrent.futures.TimeoutError:
-                        logging.info(f"url: {url} Processing took too long: {Style.RESET_ALL}")
+                        logging.info(f"url: {url} Processing took too long")
                     pbar.update(1)
                     logging.info(pbar.__str__())
             except concurrent.futures.TimeoutError:
-                logging.info(f"url: {url} Processing took too long: {Style.RESET_ALL}")
+                logging.info(f"url: {url} Processing took too long")
 
             finally:
                 pbar.close()
