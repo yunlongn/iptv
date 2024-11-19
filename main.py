@@ -1,9 +1,16 @@
 import re
+from typing import Dict
+
 import requests
 import logging
+import concurrent.futures
 from collections import OrderedDict
 from datetime import datetime
-import config
+
+from colorama import Style
+from tqdm import tqdm
+
+from config import config
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler("fetch.log", "w", encoding="utf-8"), logging.StreamHandler()])
 
@@ -39,18 +46,22 @@ def fetch_channels(url):
 
         if is_m3u:
             for line in lines:
-                line = line.strip()
-                if line.startswith("#EXTINF"):
-                    match = re.search(r'group-title="(.*?)",(.*)', line)
-                    if match:
-                        current_category = match.group(1).strip()
-                        channel_name = match.group(2).strip()
-                        if current_category not in channels:
-                            channels[current_category] = []
-                elif line and not line.startswith("#"):
-                    channel_url = line.strip()
-                    if current_category and channel_name:
-                        channels[current_category].append((channel_name, channel_url))
+                try:
+                    line = line.strip()
+                    if line.startswith("#EXTINF"):
+                        match = re.search(r'group-title="(.*?)"', line)
+                        match2 = re.search(r',(.*)', line)
+                        if match:
+                            current_category = match.group(1).strip()
+                            channel_name = match2.group(1).strip()
+                            if current_category not in channels:
+                                channels[current_category] = []
+                    elif line and not line.startswith("#"):
+                        channel_url = line.strip()
+                        if current_category and channel_name:
+                            channels[current_category].append((channel_name, channel_url))
+                except Exception as e:
+                    logging.error(f"fetch_channels error line {line}", e)
         else:
             for line in lines:
                 line = line.strip()
@@ -73,40 +84,74 @@ def fetch_channels(url):
 
     return channels
 
-def match_channels(template_channels, all_channels):
+def match_channels(template_channels, all_channels, rename_dic):
     matched_channels = OrderedDict()
+
 
     for category, channel_list in template_channels.items():
         matched_channels[category] = OrderedDict()
         for channel_name in channel_list:
             for online_category, online_channel_list in all_channels.items():
                 for online_channel_name, online_channel_url in online_channel_list:
+                    # 纠错频道名称
+                    if online_channel_name in rename_dic and online_channel_name != rename_dic[online_channel_name]:
+                        online_channel_name = rename_dic[online_channel_name]
                     if channel_name == online_channel_name:
                         matched_channels[category].setdefault(channel_name, []).append(online_channel_url)
 
     return matched_channels
 
+def load_modify_name(filename):
+    corrections = {}
+    with open(filename, 'r', encoding='utf-8') as f:
+        for line in f:
+            parts = line.strip().split(',')
+            correct_name = parts[0]
+            for name in parts[1:]:
+                corrections[name] = correct_name
+    return corrections
+
 def filter_source_urls(template_file):
+    #读取修改字典文件
+    rename_dic: dict[str, str] = load_modify_name('config/rename.txt')
     template_channels = parse_template(template_file)
     source_urls = config.source_urls
+    future_to_url = {}
+    pbar = tqdm(total=len(source_urls), desc="Checking channels", ncols=100, colour="green")
 
-    all_channels = OrderedDict()
-    for url in source_urls:
-        fetched_channels = fetch_channels(url)
-        for category, channel_list in fetched_channels.items():
-            if category in all_channels:
-                all_channels[category].extend(channel_list)
-            else:
-                all_channels[category] = channel_list
+    with concurrent.futures.ThreadPoolExecutor(max_workers = config.threadNum) as executor:
+        all_channels = OrderedDict()
+        for url in source_urls:
+            future = executor.submit(fetch_channels, url)
+            future_to_url[future] = url
+        try:
+            for future in concurrent.futures.as_completed(future_to_url, timeout = config.futureTimout):
+                url = future_to_url[future]
+                try:
+                    for category, channel_list in future.result(config.futureTimout).items():
+                        if category in all_channels:
+                            all_channels[category].extend(channel_list)
+                        else:
+                            all_channels[category] = channel_list
+                except concurrent.futures.TimeoutError:
+                    logging.info(f"url: {url} Processing took too long: {Style.RESET_ALL}")
+                pbar.update(1)
+                logging.info(pbar.__str__())
+        except concurrent.futures.TimeoutError:
+            logging.info(f"url: {url} Processing took too long: {Style.RESET_ALL}")
 
-    matched_channels = match_channels(template_channels, all_channels)
+        finally:
+            pbar.close()
+            logging.info(pbar.__str__())
+
+    matched_channels = match_channels(template_channels, all_channels, rename_dic)
 
     return matched_channels, template_channels
 
 def is_ipv6(url):
     return re.match(r'^http:\/\/\[[0-9a-fA-F:]+\]', url) is not None
 
-def updateChannelUrlsM3U(channels, template_channels):
+def update_channel_urls_m3u(channels, template_channels):
     written_urls = set()
 
     current_date = datetime.now().strftime("%Y-%m-%d")
@@ -119,12 +164,7 @@ def updateChannelUrlsM3U(channels, template_channels):
         f_m3u.write(f"""#EXTM3U x-tvg-url={",".join(f'"{epg_url}"' for epg_url in config.epg_urls)}\n""")
 
         with open("live.txt", "w", encoding="utf-8") as f_txt:
-            for group in config.announcements:
-                f_txt.write(f"{group['channel']},#genre#\n")
-                for announcement in group['entries']:
-                    f_m3u.write(f"""#EXTINF:-1 tvg-id="1" tvg-name="{announcement['name']}" tvg-logo="{announcement['logo']}" group-title="{group['channel']}",{announcement['name']}\n""")
-                    f_m3u.write(f"{announcement['url']}\n")
-                    f_txt.write(f"{announcement['name']},{announcement['url']}\n")
+            add_author_info(f_m3u, f_txt)
 
             for category, channel_list in template_channels.items():
                 f_txt.write(f"{category},#genre#\n")
@@ -162,7 +202,18 @@ def updateChannelUrlsM3U(channels, template_channels):
 
             f_txt.write("\n")
 
+
+def add_author_info(f_m3u, f_txt):
+    for group in config.announcements:
+        f_txt.write(f"{group['channel']},#genre#\n")
+        for announcement in group['entries']:
+            f_m3u.write(
+                f"""#EXTINF:-1 tvg-id="1" tvg-name="{announcement['name']}" tvg-logo="{announcement['logo']}" group-title="{group['channel']}",{announcement['name']}\n""")
+            f_m3u.write(f"{announcement['url']}\n")
+            f_txt.write(f"{announcement['name']},{announcement['url']}\n")
+
+
 if __name__ == "__main__":
-    template_file = "tag.txt"
+    template_file = "config/tag.txt"
     channels, template_channels = filter_source_urls(template_file)
-    updateChannelUrlsM3U(channels, template_channels)
+    update_channel_urls_m3u(channels, template_channels)

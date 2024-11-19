@@ -1,4 +1,6 @@
-ip_version_priority = "ipv6"
+ip_version_priority = "ipv4" #ipv6
+threadNum = 10 # 请求线程数
+futureTimout = 3 # 请求线程等待时间
 
 source_urls = [
     "https://aktv.top/live.m3u",
@@ -7,7 +9,6 @@ source_urls = [
     "https://raw.githubusercontent.com/yuanzl77/IPTV/main/直播/央视频道.txt",
     "http://120.79.4.185/new/mdlive.txt",
     "https://live.zhoujie218.top/tv/iptv6.txt",
-    "https://dingyue.mytvsuper.xyz/myiptv.m3u",
     "https://tv.youdu.fan:666/live/",
     "http://ww.weidonglong.com/dsj.txt",
     "http://xhztv.top/zbc.txt",
@@ -20,7 +21,9 @@ source_urls = [
     "https://raw.githubusercontent.com/PizazzGY/TVBox_warehouse/main/live.txt",
     "https://fm1077.serv00.net/SmartTV.m3u",
     "https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt",
-    "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt"
+    "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt",
+    "https://www.mytvsuper.xyz/m3u/Live.m3u",
+    # "https://dingyue.mytvsuper.xyz/myiptv.m3u",
 ]
 
 url_blacklist = [
