@@ -23,6 +23,85 @@ source_urls = [
     "https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt",
     "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt",
     "https://www.mytvsuper.xyz/m3u/Live.m3u",
+    "http://wx.thego.cn/ak.m3u",
+    "https://raw.githubusercontent.com/BurningC4/Chinese-IPTV/master/TV-IPV4.m3u",
+    "https://raw.githubusercontent.com/xzw832/cmys/refs/heads/main/S_CCTV.txt",
+    "https://raw.githubusercontent.com/xzw832/cmys/refs/heads/main/S_weishi.txt",
+    "https://raw.githubusercontent.com/YueChan/Live/main/APTV.m3u",
+    "http://aktv.top/live.m3u",
+    "https://live.zhoujie218.top/tv/iptv6.txt",
+    "https://raw.githubusercontent.com/mlzlzj/hnyuan/refs/heads/main/iptv_list.txt",
+    "http://kxrj.site:567/gggg.nzk",
+    "http://rihou.cc:555/gggg.nzk",
+    "http://rihou.cc:567/gggg.nzk",
+    "http://ttkx.cc:55/lib/kx2024.txt",
+    "http://xn--ur0a.xn--dkw.xn--6qq986b3xl/down.php/a7c9d038627e11f037adcad788da129e.txt",
+    "http://kxrj.site:55/lib/kx2024.txt",
+    "https://raw.githubusercontent.com/altn2025/iptv/main/iptv.m3u",
+    "https://2912.kstore.space/520.txt",
+    "https://raw.githubusercontent.com/frxz751113/IPTVzb1/refs/heads/main/{MMdd}%E7%BB%BC%E5%90%88%E6%BA%90.txt",
+    "https://raw.githubusercontent.com/frxz751113/IPTVzb1/refs/heads/main/{MMdd-1}%E7%BB%BC%E5%90%88%E6%BA%90.txt",
+    "https://d.kstore.space/download/7395/xiaohei.txt",
+    "http://home.jundie.top:81/Cat/tv/live.txt",
+    "https://raw.githubusercontent.com/YanG-1989/m3u/refs/heads/main/Gather.m3u",
+    "https://raw.githubusercontent.com/BP3388/BP001.github.io/main/tivi.list",
+    "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u",
+    "https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8",
+    "https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt",
+    "https://raw.githubusercontent.com/Guovin/TV/gd/output/result.txt",
+    "https://10085.kstore.space/%E8%93%9D%E5%A4%A9%E7%99%BD%E4%BA%91.txt",
+    "https://m3u.ibert.me/txt/fmml_ipv6.txt",
+    "https://m3u.ibert.me/txt/ycl_iptv.txt",
+    "https://m3u.ibert.me/txt/y_g.txt",
+    "https://m3u.ibert.me/txt/j_home.txt",
+    "http://vip.vip0531.com/viptv/live202405.txt",
+    "https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt",
+    "https://gitee.com/xxy002/zhiboyuan/raw/master/zby.txt",
+    "https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt",
+    "https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt",
+    "https://gitlab.com/p2v5/wangtv/-/raw/main/lunbo.txt",
+    "https://raw.githubusercontent.com/PizazzGY/TVBox/main/live.txt",
+    "https://raw.githubusercontent.com/wwb521/live/main/tv.m3u",
+    "http://47.99.102.252/live.txt",
+    "https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt",
+    "http://xhztv.top/v6.txt",
+    "https://raw.githubusercontent.com/junge3333/juds6/main/yszb1.txt",
+    "https://raw.githubusercontent.com/zzmaze/iptv/main/itvlist.txt",
+    "https://raw.githubusercontent.com/maitel2020/iptv-self-use/main/iptv.txt",
+    "https://raw.githubusercontent.com/kimwang1978/TV/master/output/result.txt",
+    "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/refs/heads/main/assets/freetv/freetv_output_other.txt",
+    "http://1805842a.123nat.com:66/agent/2.txt",
+    "https://gitea.moe/Fathers/EkfkgH/raw/branch/main/yyfug.txt",
+    "https://raw.gitcode.com/hjf520/00/raw/main/sirenzb.txt",
+    "http://154.9.252.167:190/tvlive.txt",
+    "https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt",
+    "https://raw.githubusercontent.com/fanmingming/live/refs/heads/main/tv/m3u/ipv6.m3u",
+    # --https://raw.githubusercontent.com/zzj2678/IPTVzb1/refs/heads/main/iptv_list.txt
+    # --https://4gtv.mytvsuper.xyz/myiptv.m3u
+    # --https://gongdian.top/tv/gongdian.txt
+    # --http://wp.wadg.pro/down.php/d7b52d125998d00e2d2339bac6abd2b5.txt
+    # --https://raw.githubusercontent.com/zzmaze/iptv/main/iptv.txt
+    # --https://tvkj.top/tvlive.txt
+    # --https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u
+    # --https://gitcode.net/MZ011/BHJK/-/raw/master/BHZB1.txt
+    # --https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt
+    # --http://117.72.68.25:9230/latest.txt
+    # --https://gitlab.com/tvtg/vip/-/raw/main/log.txt
+    # --https://cdn05042023.gitlink.org.cn/liliang74120/cmds/raw/branch/master/myDS.txt
+    # --https://cdn05042023.gitlink.org.cn/api/v1/repos/xuanbei/ysv/raw/live.txt
+    # --http://ttkx.live:55/lib/kx2024.txt
+    # --https://2883.kstore.vip/gggg.nzk
+    # --http://kxrj.site:35455/tv.m3u
+    # --http://ttkx.live:567/gggg.nzk
+    # ++http://120.79.4.185/new/mdlive.txt
+    # ++http://tv.850930.xyz/kdsb.m3u
+    # ++http://tv.850930.xyz/kdsb2.m3u
+    # ++http://tv.850930.xyz/gather.m3u
+    # ++http://tv.850930.xyz/543.m3u
+    # ++http://tv.850930.xyz/histar.m3u
+    # ++http://l.gmbbk.com/upload/16401640.txt
+    # ++http://122.228.85.203:5988/uploads/tvbox/tv.txt
+    # ++https://raw.githubusercontent.com/lystv/short/main/影视/tvb/MTV.txt
     # "https://dingyue.mytvsuper.xyz/myiptv.m3u",
 ]
 

@@ -31,7 +31,7 @@ def parse_template(template_file):
 
     return template_channels
 
-def fetch_channels(url):
+def fetch_channels(url, invalid_url):
     channels = OrderedDict()
 
     try:
@@ -61,7 +61,7 @@ def fetch_channels(url):
                         if current_category and channel_name:
                             channels[current_category].append((channel_name, channel_url))
                 except Exception as e:
-                    logging.error(f"fetch_channels error line {line}", e)
+                    logging.error(f"fetch_channels error line {url} {line}", e)
         else:
             for line in lines:
                 line = line.strip()
@@ -81,6 +81,8 @@ def fetch_channels(url):
             logging.info(f"url: {url} 读取成功✅，包含频道分类: {categories}")
     except requests.RequestException as e:
         logging.error(f"url: {url} 读取失败❌, Error: {e}")
+        invalid_url.write(f"url: {url} \n")
+
 
     return channels
 
@@ -119,30 +121,31 @@ def filter_source_urls(template_file):
     future_to_url = {}
     pbar = tqdm(total=len(source_urls), desc="Checking channels", ncols=100, colour="green")
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers = config.threadNum) as executor:
-        all_channels = OrderedDict()
-        for url in source_urls:
-            future = executor.submit(fetch_channels, url)
-            future_to_url[future] = url
-        try:
-            for future in concurrent.futures.as_completed(future_to_url, timeout = config.futureTimout):
-                url = future_to_url[future]
-                try:
-                    for category, channel_list in future.result(config.futureTimout).items():
-                        if category in all_channels:
-                            all_channels[category].extend(channel_list)
-                        else:
-                            all_channels[category] = channel_list
-                except concurrent.futures.TimeoutError:
-                    logging.info(f"url: {url} Processing took too long: {Style.RESET_ALL}")
-                pbar.update(1)
-                logging.info(pbar.__str__())
-        except concurrent.futures.TimeoutError:
-            logging.info(f"url: {url} Processing took too long: {Style.RESET_ALL}")
+    with open("config/invalid_url.txt", "w", encoding="utf-8") as invalid_url:
+        with concurrent.futures.ThreadPoolExecutor(max_workers = config.threadNum) as executor:
+            all_channels = OrderedDict()
+            for url in source_urls:
+                future = executor.submit(fetch_channels, url, invalid_url)
+                future_to_url[future] = url
+            try:
+                for future in concurrent.futures.as_completed(future_to_url, timeout = config.futureTimout):
+                    url = future_to_url[future]
+                    try:
+                        for category, channel_list in future.result(config.futureTimout).items():
+                            if category in all_channels:
+                                all_channels[category].extend(channel_list)
+                            else:
+                                all_channels[category] = channel_list
+                    except concurrent.futures.TimeoutError:
+                        logging.info(f"url: {url} Processing took too long: {Style.RESET_ALL}")
+                    pbar.update(1)
+                    logging.info(pbar.__str__())
+            except concurrent.futures.TimeoutError:
+                logging.info(f"url: {url} Processing took too long: {Style.RESET_ALL}")
 
-        finally:
-            pbar.close()
-            logging.info(pbar.__str__())
+            finally:
+                pbar.close()
+                logging.info(pbar.__str__())
 
     matched_channels = match_channels(template_channels, all_channels, rename_dic)
 
