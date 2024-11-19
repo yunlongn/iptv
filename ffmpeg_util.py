@@ -25,7 +25,7 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, ff
                     cache[url] = (False, f"Invalid status code: {response.status_code}")
                     return False, f"Invalid status code: {response.status_code}"
 
-            ffmpeg_command = ['ffmpeg', '-i', url, '-t', '5', '-f', 'null', '-']
+            ffmpeg_command = ['C:\\Users\\yunlong.li\\Downloads\\ffmpeg-master-latest-win64-gpl-shared\\bin\\ffmpeg.exe', '-i', url, '-t', '5', '-f', 'null', '-']
             result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
             if result.returncode == 0:
                 cache[url] = (True, None)
@@ -35,13 +35,13 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, ff
                 return False, "Stream does not work"
 
         except subprocess.TimeoutExpired:
-            logging.error(f"ffmpeg timeout for {channel_name} (attempt {attempt + 1})")
+            logging.error(f"ffmpeg timeout for {channel_name} {url} (attempt {attempt + 1})")
             if attempt == RETRY_COUNT:
                 cache[url] = (False, "ffmpeg timeout")
                 return False, "ffmpeg timeout"
 
         except requests.exceptions.RequestException as e:
-            logging.error(f"Request error for {channel_name} (attempt {attempt + 1}): {e}", exc_info=True)
+            logging.error(f"Request error for {channel_name}  {url}  (attempt {attempt + 1})")
             simplified_error = simplify_error(str(e))
             if attempt == RETRY_COUNT:
                 cache[url] = (False, simplified_error)

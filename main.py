@@ -7,6 +7,7 @@ from collections import OrderedDict
 from datetime import datetime
 import tqdm
 
+import ffmpeg_util
 from config import config
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler("fetch.log", "w", encoding="utf-8"), logging.StreamHandler()])
@@ -41,38 +42,55 @@ def fetch_channels(url, invalid_url):
         source_type = "m3u" if is_m3u else "txt"
         logging.info(f"url: {url} 获取成功，判断为{source_type}格式")
 
-        if is_m3u:
-            for line in lines:
-                try:
+        future_to_url = {}
+        with concurrent.futures.ThreadPoolExecutor(max_workers = config.ffmpegCheckThreadNum) as executor:
+            if is_m3u:
+                for line in lines:
+                    try:
+                        line = line.strip()
+                        if line.startswith("#EXTINF"):
+                            match = re.search(r'group-title="(.*?)"', line)
+                            match2 = re.search(r',(.*)', line)
+                            if match:
+                                current_category = match.group(1).strip()
+                                channel_name = match2.group(1).strip()
+                                if current_category not in channels:
+                                    channels[current_category] = []
+                        elif line and not line.startswith("#"):
+                            channel_url = line.strip()
+                            if current_category and channel_name:
+                                future = executor.submit(ffmpeg_util.check_stream, channel_url, channel_name, {}, 25)
+                                future_to_url[future] = (current_category, channel_name, channel_url)
+                                # channels[current_category].append((channel_name, channel_url))
+                    except Exception as e:
+                        logging.error(f"fetch_channels error line {url} {line}", e)
+            else:
+                for line in lines:
                     line = line.strip()
-                    if line.startswith("#EXTINF"):
-                        match = re.search(r'group-title="(.*?)"', line)
-                        match2 = re.search(r',(.*)', line)
+                    if "#genre#" in line:
+                        current_category = line.split(",")[0].strip()
+                        channels[current_category] = []
+                    elif current_category:
+                        match = re.match(r"^(.*?),(.*?)$", line)
                         if match:
-                            current_category = match.group(1).strip()
-                            channel_name = match2.group(1).strip()
-                            if current_category not in channels:
-                                channels[current_category] = []
-                    elif line and not line.startswith("#"):
-                        channel_url = line.strip()
-                        if current_category and channel_name:
-                            channels[current_category].append((channel_name, channel_url))
-                except Exception as e:
-                    logging.error(f"fetch_channels error line {url} {line}", e)
-        else:
-            for line in lines:
-                line = line.strip()
-                if "#genre#" in line:
-                    current_category = line.split(",")[0].strip()
-                    channels[current_category] = []
-                elif current_category:
-                    match = re.match(r"^(.*?),(.*?)$", line)
-                    if match:
-                        channel_name = match.group(1).strip()
-                        channel_url = match.group(2).strip()
+                            channel_name = match.group(1).strip()
+                            channel_url = match.group(2).strip()
+                            # channels[current_category].append((channel_name, channel_url))
+                            future = executor.submit(ffmpeg_util.check_stream, channel_url, channel_name, {}, 25)
+                            future_to_url[future] = (current_category, channel_name, channel_url)
+                        elif line:
+                            future_to_url[future] = (current_category, line, '')
+                            # channels[current_category].append((line, ''))
+            try:
+                for future in concurrent.futures.as_completed(future_to_url, timeout=config.futureTimout):
+                    (current_category, channel_name, channel_url) = future_to_url[future]
+                    try:
                         channels[current_category].append((channel_name, channel_url))
-                    elif line:
-                        channels[current_category].append((line, ''))
+                    except concurrent.futures.TimeoutError:
+                        logging.info(f"url: {url} Processing took too long")
+            except concurrent.futures.TimeoutError:
+                logging.info(f"url: {url} Processing took too long")
+
         if channels:
             categories = ", ".join(channels.keys())
             logging.info(f"url: {url} 读取成功✅，包含频道分类: {categories}")
@@ -85,8 +103,6 @@ def fetch_channels(url, invalid_url):
 
 def match_channels(template_channels, all_channels, rename_dic):
     matched_channels = OrderedDict()
-
-
     for category, channel_list in template_channels.items():
         matched_channels[category] = OrderedDict()
         for channel_name in channel_list:
