@@ -1,12 +1,11 @@
 import re
-from typing import Dict
 
 import requests
 import logging
 import concurrent.futures
 from collections import OrderedDict
 from datetime import datetime
-from tqdm import tqdm
+import tqdm
 
 from config import config
 
@@ -117,7 +116,7 @@ def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
     source_urls = config.source_urls
     future_to_url = {}
-    pbar = tqdm(total=len(source_urls), desc="Checking channels", ncols=100, colour="green")
+    pbar = tqdm.tqdm(total=len(source_urls), desc="Checking channels", ncols=100, colour="green")
 
     with open("config/invalid_url.txt", "w", encoding="utf-8") as invalid_url:
         with concurrent.futures.ThreadPoolExecutor(max_workers = config.threadNum) as executor:
