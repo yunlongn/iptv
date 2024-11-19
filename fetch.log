@@ -1,5 +1,223 @@
-2024-11-19 20:57:40,138 - INFO - url: https://aktv.top/live.m3u 获取成功，判断为m3u格式
-2024-11-19 20:57:40,139 - INFO - url: https://aktv.top/live.m3u 读取成功✅，包含频道分类: AKTV
-2024-11-19 20:57:40,140 - INFO - Checking channels: 100%|[32m██████████████████████████████████████████████[0m| 1/1 [00:00<00:00,  2.16it/s][0m
-2024-11-19 20:57:40,140 - INFO - Checking channels: 100%|[32m██████████████████████████████████████████████[0m| 1/1 [00:00<00:00,  2.15it/s][0m
-2024-11-19 20:59:05,056 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-2/AKTV.m3u8: Stream does not work
+2024-11-19 21:01:06,300 - INFO - url: https://aktv.top/live.m3u 获取成功，判断为m3u格式
+2024-11-19 21:01:06,301 - INFO - url: https://aktv.top/live.m3u 读取成功✅，包含频道分类: AKTV
+2024-11-19 21:01:06,302 - INFO - Checking channels: 100%|[32m██████████████████████████████████████████████[0m| 1/1 [00:00<00:00,  1.33it/s][0m
+2024-11-19 21:01:06,302 - INFO - Checking channels: 100%|[32m██████████████████████████████████████████████[0m| 1/1 [00:00<00:00,  1.33it/s][0m
+2024-11-19 21:01:06,515 - ERROR - General error for 鳳凰資訊: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:06,780 - ERROR - General error for 鳳凰資訊: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:06,780 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8: General error
+2024-11-19 21:01:06,780 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8: General error
+2024-11-19 21:01:06,841 - ERROR - General error for 鳳凰香港: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,044 - ERROR - General error for 鳳凰香港: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,044 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8: General error
+2024-11-19 21:01:07,044 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8: General error
+2024-11-19 21:01:07,045 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8: General error
+2024-11-19 21:01:07,118 - ERROR - General error for 黃金翡翠台: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,183 - ERROR - General error for 黃金翡翠台: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,183 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8: General error
+2024-11-19 21:01:07,183 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8: General error
+2024-11-19 21:01:07,184 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8: General error
+2024-11-19 21:01:07,184 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8: General error
+2024-11-19 21:01:07,248 - ERROR - General error for 翡翠台: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,302 - ERROR - General error for 翡翠台: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,302 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8: General error
+2024-11-19 21:01:07,303 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8: General error
+2024-11-19 21:01:07,303 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8: General error
+2024-11-19 21:01:07,303 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8: General error
+2024-11-19 21:01:07,303 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8: General error
+2024-11-19 21:01:07,360 - ERROR - General error for 翡翠综合台(北美): [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,415 - ERROR - General error for 翡翠综合台(北美): [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,416 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8: General error
+2024-11-19 21:01:07,416 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8: General error
+2024-11-19 21:01:07,416 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8: General error
+2024-11-19 21:01:07,416 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8: General error
+2024-11-19 21:01:07,416 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8: General error
+2024-11-19 21:01:07,416 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8: General error
+2024-11-19 21:01:07,469 - ERROR - General error for TVB 星河台: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,522 - ERROR - General error for TVB 星河台: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,522 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv2/tvb/AKTV.m3u8: General error
+2024-11-19 21:01:07,522 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8: General error
+2024-11-19 21:01:07,523 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8: General error
+2024-11-19 21:01:07,523 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8: General error
+2024-11-19 21:01:07,523 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8: General error
+2024-11-19 21:01:07,523 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv2/tvb/AKTV.m3u8: General error
+2024-11-19 21:01:07,524 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8: General error
+2024-11-19 21:01:07,587 - ERROR - General error for 凤凰中文: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,644 - ERROR - General error for 凤凰中文: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,645 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-3/AKTV.m3u8: General error
+2024-11-19 21:01:07,645 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8: General error
+2024-11-19 21:01:07,645 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8: General error
+2024-11-19 21:01:07,645 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8: General error
+2024-11-19 21:01:07,645 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8: General error
+2024-11-19 21:01:07,645 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv2/tvb/AKTV.m3u8: General error
+2024-11-19 21:01:07,645 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8: General error
+2024-11-19 21:01:07,645 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-3/AKTV.m3u8: General error
+2024-11-19 21:01:07,645 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8: General error
+2024-11-19 21:01:07,646 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8: General error
+2024-11-19 21:01:07,646 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8: General error
+2024-11-19 21:01:07,646 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8: General error
+2024-11-19 21:01:07,646 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv2/tvb/AKTV.m3u8: General error
+2024-11-19 21:01:07,646 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8: General error
+2024-11-19 21:01:07,646 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-3/AKTV.m3u8: General error
+2024-11-19 21:01:07,736 - ERROR - General error for 明珠台: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,833 - ERROR - General error for 明珠台: [Errno 2] No such file or directory: 'ffmpeg'
+Traceback (most recent call last):
+  File "/home/runner/work/iptv/iptv/ffmpeg_util.py", line 29, in check_stream
+    result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+2024-11-19 21:01:07,834 - ERROR - Failed to play http://aktv.top/AKTV/live/aktv/null-2/AKTV.m3u8: General error

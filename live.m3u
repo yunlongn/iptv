@@ -8,52 +8,10 @@ https://yunlongn.github.io/
 #EXTINF:-1 tvg-id="1" tvg-name="2024-11-19" tvg-logo="https://avatars.githubusercontent.com/u/38271111?v=4" group-title="公告",2024-11-19
 https://yunlongn.github.io/
 #EXTINF:-1 tvg-name="鳳凰資訊" tvg-logo="https://live.fanmingming.com/tv/鳳凰資訊.png" group-title="AKTV",鳳凰資訊
-http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8$LR•IPV4
 #EXTINF:-1 tvg-name="鳳凰香港" tvg-logo="https://live.fanmingming.com/tv/鳳凰香港.png" group-title="AKTV",鳳凰香港
-http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8$LR•IPV4
 #EXTINF:-1 tvg-name="黃金翡翠台" tvg-logo="https://live.fanmingming.com/tv/黃金翡翠台.png" group-title="AKTV",黃金翡翠台
-http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8$LR•IPV4
 #EXTINF:-1 tvg-name="翡翠台" tvg-logo="https://live.fanmingming.com/tv/翡翠台.png" group-title="AKTV",翡翠台
-http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8$LR•IPV4
 #EXTINF:-1 tvg-name="翡翠综合台(北美)" tvg-logo="https://live.fanmingming.com/tv/翡翠综合台(北美).png" group-title="AKTV",翡翠综合台(北美)
-http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8$LR•IPV4
 #EXTINF:-1 tvg-name="TVB 星河台" tvg-logo="https://live.fanmingming.com/tv/TVB 星河台.png" group-title="AKTV",TVB 星河台
-http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv2/tvb/AKTV.m3u8$LR•IPV4
 #EXTINF:-1 tvg-name="凤凰中文" tvg-logo="https://live.fanmingming.com/tv/凤凰中文.png" group-title="港·澳·台",凤凰中文
-http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv2/tvb/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-3/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8$LR•IPV4『线路1』
-http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8$LR•IPV4『线路1』
-http://aktv.top/AKTV/live/aktv2/tvb/AKTV.m3u8$LR•IPV4『线路1』
-http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8$LR•IPV4『线路1』
-http://aktv.top/AKTV/live/aktv/null-3/AKTV.m3u8$LR•IPV4『线路1』
-http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8$LR•IPV4『线路1』
-http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8$LR•IPV4『线路1』
 #EXTINF:-1 tvg-name="明珠台" tvg-logo="https://live.fanmingming.com/tv/明珠台.png" group-title="港·澳·台",明珠台
-http://aktv.top/AKTV/live/aktv2/tvb/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-21/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-4/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-3/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-17/AKTV.m3u8$LR•IPV4
-http://aktv.top/AKTV/live/aktv/null-5/AKTV.m3u8$LR•IPV4
