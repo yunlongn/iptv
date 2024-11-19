@@ -21,6 +21,12 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, ff
 
             if url.startswith('http://') or url.startswith('https://'):
                 response = requests.head(url, headers=headers, timeout=15, verify=False)
+                if response.status_code == 200:
+                    cache[url] = (True, None)
+                    return True, None
+                if response.status_code == 403 or response.status_code == 400:
+                    cache[url] = (True, None)
+                    return True, None
                 if response.status_code != 200:
                     cache[url] = (False, f"Invalid status code: {response.status_code}")
                     return False, f"Invalid status code: {response.status_code}"

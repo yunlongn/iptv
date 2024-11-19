@@ -1,7 +1,8 @@
 ip_version_priority = "ipv4" #ipv6
 threadNum = 10 # 请求线程数
-ffmpegCheckThreadNum = 32 # 请求线程数
 futureTimout = 300 # 请求线程等待时间
+ffmpegCheckThreadNum = 32 # 请求线程数
+ffmpegCheckThreadTimeout = 60 # 请求线程等待时间
 
 source_urls = [
     "https://aktv.top/live.m3u",

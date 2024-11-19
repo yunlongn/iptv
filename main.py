@@ -195,10 +195,10 @@ def update_channel_urls_m3u(channels, template_channels):
 
                                 try:
                                     for future in concurrent.futures.as_completed(future_to_url,
-                                                                                  timeout=config.futureTimout):
+                                                                                  timeout=config.ffmpegCheckThreadTimeout):
                                         (index, url) = future_to_url[future]
                                         try:
-                                            success, error = future.result()
+                                            success, error = future.result(config.ffmpegCheckThreadTimeout)
                                             if success:
                                                 if is_ipv6(url):
                                                     url_suffix = f"$LR•IPV6" if total_urls == 1 else f"$LR•IPV6『线路{index}』"
