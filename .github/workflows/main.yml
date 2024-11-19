@@ -1,6 +1,10 @@
 name: Daily Update
 
 on:
+  pull_request:
+  push:
+    branches:
+      - main
   schedule:
     - cron: '45 21 * * *'
   workflow_dispatch:
@@ -34,6 +38,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install requests
+          pip list
 
       - name: Run Python script
         run: python main.py
