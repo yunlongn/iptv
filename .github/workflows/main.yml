@@ -38,6 +38,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install requests
+          pip install -r requirements.txt
           pip list
 
       - name: Run Python script
