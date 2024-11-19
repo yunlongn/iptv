@@ -25,7 +25,7 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, ff
                     cache[url] = (False, f"Invalid status code: {response.status_code}")
                     return False, f"Invalid status code: {response.status_code}"
 
-            ffmpeg_command = ['C:\\Users\\yunlong.li\\Downloads\\ffmpeg-master-latest-win64-gpl-shared\\bin\\ffmpeg.exe', '-i', url, '-t', '5', '-f', 'null', '-']
+            ffmpeg_command = ['ffmpeg', '-i', url, '-t', '5', '-f', 'null', '-']
             result = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=ffmpeg_timeout)
             if result.returncode == 0:
                 cache[url] = (True, None)
