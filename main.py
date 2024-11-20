@@ -38,6 +38,7 @@ def fetch_channels(url, invalid_url):
         response.encoding = 'utf-8'
         lines = response.text.split("\n")
         current_category = None
+        channel_name = None
         is_m3u = any("#EXTINF" in line for line in lines[:15])
         source_type = "m3u" if is_m3u else "txt"
         logging.info(f"url: {url} 获取成功，判断为{source_type}格式")
@@ -57,28 +58,26 @@ def fetch_channels(url, invalid_url):
                     elif line and not line.startswith("#"):
                         channel_url = line.strip()
                         if current_category and channel_name:
-                            # future = executor.submit(ffmpeg_util.check_stream, channel_url, channel_name, {}, 25)
-                            # future_to_url[future] = (current_category, channel_name, channel_url)
                             channels[current_category].append((channel_name, channel_url))
                 except Exception as e:
-                    logging.error(f"fetch_channels error line {url} {line}", e)
+                    logging.error(f"fetch_channels m3u error line {url} {line}", e)
         else:
             for line in lines:
-                line = line.strip()
-                if "#genre#" in line:
-                    current_category = line.split(",")[0].strip()
-                    channels[current_category] = []
-                elif current_category:
-                    match = re.match(r"^(.*?),(.*?)$", line)
-                    if match:
-                        channel_name = match.group(1).strip()
-                        channel_url = match.group(2).strip()
-                        channels[current_category].append((channel_name, channel_url))
-                        # future = executor.submit(ffmpeg_util.check_stream, channel_url, channel_name, {}, 25)
-                        # future_to_url[future] = (current_category, channel_name, channel_url)
-                    elif line:
-                        # future_to_url[future] = (current_category, line, '')
-                        channels[current_category].append((line, ''))
+                try:
+                    line = line.strip()
+                    if "#genre#" in line:
+                        current_category = line.split(",")[0].strip()
+                        channels[current_category] = []
+                    elif current_category:
+                        match = re.match(r"^(.*?),(.*?)$", line)
+                        if match:
+                            channel_name = match.group(1).strip()
+                            channel_url = match.group(2).strip()
+                            channels[current_category].append((channel_name, channel_url))
+                        elif line:
+                            channels[current_category].append((line, ''))
+                except Exception as e:
+                    logging.error(f"fetch_channels txt error line {url} {line}", e)
 
         if channels:
             categories = ", ".join(channels.keys())
