@@ -3,6 +3,7 @@ threadNum = 10 # 请求线程数
 futureTimout = 300 # 请求线程等待时间
 ffmpegCheckThreadNum = 32 # 请求线程数
 ffmpegCheckThreadTimeout = 60 # 请求线程等待时间
+notCheck = 0 # 是否不检查地址
 
 source_urls = [
     "https://aktv.top/live.m3u",

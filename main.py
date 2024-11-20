@@ -84,7 +84,7 @@ def fetch_channels(url, invalid_url):
             logging.info(f"url: {url} 读取成功✅，包含频道分类: {categories}")
     except requests.RequestException as e:
         logging.error(f"url: {url} 读取失败❌, Error: {e}")
-        invalid_url.write(f"url: {url} \n")
+        invalid_url.write(f"{url}\n")
 
 
     return channels

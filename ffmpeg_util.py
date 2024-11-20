@@ -4,6 +4,9 @@ import subprocess
 
 import requests
 import logging
+
+import config.config
+
 cache = {}
 
 # Configuration settings
@@ -13,6 +16,9 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, ff
     """Validate stream against URL using ffmpeg and HTTP request. Returns a tuple (success, error) for logging."""
     if url in cache:
         return cache[url]
+    if config.config.notCheck == 1:
+        cache[url] = (True, None)
+        return True, None
 
     for attempt in range(RETRY_COUNT + 1):
         try:
