@@ -1,7 +1,7 @@
 url: http://120.79.4.185/new/mdlive.txt 
+url: https://2912.kstore.space/520.txt 
 url: https://raw.githubusercontent.com/frxz751113/IPTVzb1/refs/heads/main/{MMdd}%E7%BB%BC%E5%90%88%E6%BA%90.txt 
 url: https://raw.githubusercontent.com/frxz751113/IPTVzb1/refs/heads/main/{MMdd-1}%E7%BB%BC%E5%90%88%E6%BA%90.txt 
-url: https://2912.kstore.space/520.txt 
 url: https://d.kstore.space/download/7395/xiaohei.txt 
-url: https://www.mytvsuper.xyz/m3u/Live.m3u 
 url: https://10085.kstore.space/%E8%93%9D%E5%A4%A9%E7%99%BD%E4%BA%91.txt 
+url: https://www.mytvsuper.xyz/m3u/Live.m3u 
