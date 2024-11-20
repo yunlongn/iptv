@@ -10,7 +10,7 @@ import tqdm
 import ffmpeg_util
 from config import config
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler("fetch.log", "w", encoding="utf-8"), logging.StreamHandler()])
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler("logs/fetch.log", "w", encoding="utf-8"), logging.StreamHandler()])
 
 def parse_template(template_file):
     template_channels = OrderedDict()
@@ -174,74 +174,78 @@ def update_channel_urls_m3u(channels, template_channels):
             with concurrent.futures.ThreadPoolExecutor(max_workers=config.ffmpegCheckThreadNum) as executor:
                 for category, channel_list in template_channels.items():
                     f_txt.write(f"{category},#genre#\n")
-                    future_to_url = {}
-                    if category in channels:
-                        for channel_name in channel_list:
-                            if channel_name in channels[category]:
-                                # 将IPV6排到最前面
-                                sorted_urls = sorted(channels[category][channel_name], key=lambda url: not is_ipv6(url) if config.ip_version_priority == "ipv6" else is_ipv6(url))
-                                filtered_urls = []
-                                for url in sorted_urls:
-                                    if url and url not in written_urls and not any(blacklist in url for blacklist in config.url_blacklist):
-                                        filtered_urls.append(url)
-                                        written_urls.add(url)
-                                total_urls = len(filtered_urls)
-                                if total_urls >= 1:
-                                    f_m3u.write(f"#EXTINF:-1 tvg-name=\"{channel_name}\" tvg-logo=\"https://live.fanmingming.com/tv/{channel_name}.png\" group-title=\"{category}\",{channel_name}\n")
+                    # 分类不数据要保存的分类列表则跳过
+                    if category not in channels:
+                        continue
+                    for channel_name in channel_list:
+                        # 渠道不数据要操作的渠道列表则跳过
+                        if channel_name not in channels[category]:
+                            continue
+                        # 讲指定的数据排序到最前面 由于 ip_version_priority决定
+                        sorted_urls = sorted(channels[category][channel_name], key=lambda url: not is_ipv6(url) if config.ip_version_priority == "ipv6" else is_ipv6(url))
+                        filtered_urls = []
+                        future_concurrents = {}
+                        for url in sorted_urls:
+                            if url and url not in written_urls and not any(blacklist in url for blacklist in config.url_blacklist):
+                                filtered_urls.append(url)
+                                written_urls.add(url)
+                        total_urls = len(filtered_urls)
+                        if total_urls >= 1:
+                            f_m3u.write(f"#EXTINF:-1 tvg-name=\"{channel_name}\" tvg-logo=\"https://live.fanmingming.com/tv/{channel_name}.png\" group-title=\"{category}\",{channel_name}\n")
 
-                                for index, url in enumerate(filtered_urls, start=1):
-                                    future = executor.submit(ffmpeg_util.check_stream, url, channel_name, {}, 25)
-                                    future_to_url[future] = (index, url)
+                        for index, url in enumerate(filtered_urls, start=1):
+                            future = executor.submit(ffmpeg_util.check_stream, url, channel_name, {}, 25)
+                            future_concurrents[future] = (index, url)
 
+                        try:
+                            for future in concurrent.futures.as_completed(future_concurrents,
+                                                                          timeout=config.ffmpegCheckThreadTimeout):
+                                (index, url) = future_concurrents[future]
                                 try:
-                                    for future in concurrent.futures.as_completed(future_to_url,
-                                                                                  timeout=config.ffmpegCheckThreadTimeout):
-                                        (index, url) = future_to_url[future]
-                                        try:
-                                            success, error = future.result(config.ffmpegCheckThreadTimeout)
-                                            if success:
-                                                if is_ipv6(url):
-                                                    url_suffix = f"$LR•IPV6" if total_urls == 1 else f"$LR•IPV6『线路{index}』"
-                                                else:
-                                                    url_suffix = f"$LR•IPV4" if total_urls == 1 else f"$LR•IPV4『线路{index}』"
-                                                if '$' in url:
-                                                    base_url = url.split('$', 1)[0]
-                                                else:
-                                                    base_url = url
+                                    success, error = future.result(config.ffmpegCheckThreadTimeout)
+                                    if success:
+                                        if is_ipv6(url):
+                                            url_suffix = f"$LR•IPV6" if total_urls == 1 else f"$LR•IPV6『线路{index}』"
+                                        else:
+                                            url_suffix = f"$LR•IPV4" if total_urls == 1 else f"$LR•IPV4『线路{index}』"
+                                        if '$' in url:
+                                            base_url = url.split('$', 1)[0]
+                                        else:
+                                            base_url = url
 
-                                                new_url = f"{base_url}{url_suffix}"
-                                                if is_ipv6(url):
-                                                    f_txt.write(f"{channel_name}(IPV6),{new_url}\n")
-                                                else:
-                                                    f_txt.write(f"{channel_name},{new_url}\n")
+                                        new_url = f"{base_url}{url_suffix}"
+                                        if is_ipv6(url):
+                                            f_txt.write(f"{channel_name}(IPV6),{new_url}\n")
+                                        else:
+                                            f_txt.write(f"{channel_name},{new_url}\n")
 
-                                                f_m3u.write(new_url + "\n")
-                                            else:
-                                                logging.error(f"Failed to play {url}: {error}")
+                                        f_m3u.write(new_url + "\n")
+                                    else:
+                                        logging.error(f"Failed to play {url} {error}")
 
-                                        except concurrent.futures.TimeoutError:
-                                            logging.info(f"url: {url} Processing took too long")
                                 except concurrent.futures.TimeoutError:
                                     logging.info(f"url: {url} Processing took too long")
+                        except concurrent.futures.TimeoutError:
+                            logging.info(f"url: {url} Processing took too long")
 
 
-                                # for index, url in enumerate(filtered_urls, start=1):
-                                #     if is_ipv6(url):
-                                #         url_suffix = f"$LR•IPV6" if total_urls == 1 else f"$LR•IPV6『线路{index}』"
-                                #     else:
-                                #         url_suffix = f"$LR•IPV4" if total_urls == 1 else f"$LR•IPV4『线路{index}』"
-                                #     if '$' in url:
-                                #         base_url = url.split('$', 1)[0]
-                                #     else:
-                                #         base_url = url
-                                #
-                                #     new_url = f"{base_url}{url_suffix}"
-                                #     if is_ipv6(url):
-                                #         f_txt.write(f"{channel_name}(IPV6),{new_url}\n")
-                                #     else:
-                                #         f_txt.write(f"{channel_name},{new_url}\n")
-                                #
-                                #     f_m3u.write(new_url + "\n")
+                        # for index, url in enumerate(filtered_urls, start=1):
+                        #     if is_ipv6(url):
+                        #         url_suffix = f"$LR•IPV6" if total_urls == 1 else f"$LR•IPV6『线路{index}』"
+                        #     else:
+                        #         url_suffix = f"$LR•IPV4" if total_urls == 1 else f"$LR•IPV4『线路{index}』"
+                        #     if '$' in url:
+                        #         base_url = url.split('$', 1)[0]
+                        #     else:
+                        #         base_url = url
+                        #
+                        #     new_url = f"{base_url}{url_suffix}"
+                        #     if is_ipv6(url):
+                        #         f_txt.write(f"{channel_name}(IPV6),{new_url}\n")
+                        #     else:
+                        #         f_txt.write(f"{channel_name},{new_url}\n")
+                        #
+                        #     f_m3u.write(new_url + "\n")
 
 
             f_txt.write("\n")

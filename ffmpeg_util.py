@@ -9,7 +9,6 @@ cache = {}
 # Configuration settings
 RETRY_COUNT = 1
 FFMPEG_TIMEOUT = 25
-NUM_THREADS = 4  # Change to the required number of threads
 def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, ffmpeg_timeout: int = FFMPEG_TIMEOUT) -> Tuple[bool, Optional[str]]:
     """Validate stream against URL using ffmpeg and HTTP request. Returns a tuple (success, error) for logging."""
     if url in cache:
