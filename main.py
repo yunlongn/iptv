@@ -171,10 +171,10 @@ def update_channel_urls_m3u(channels, template_channels):
         with open("live.txt", "w", encoding="utf-8") as f_txt:
             add_author_info(f_m3u, f_txt)
 
-            future_to_url = {}
             with concurrent.futures.ThreadPoolExecutor(max_workers=config.ffmpegCheckThreadNum) as executor:
                 for category, channel_list in template_channels.items():
                     f_txt.write(f"{category},#genre#\n")
+                    future_to_url = {}
                     if category in channels:
                         for channel_name in channel_list:
                             if channel_name in channels[category]:
