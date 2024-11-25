@@ -10,7 +10,6 @@ source_urls = [
     "http://175.178.251.183:6689/aktvlive.txt",
     "https://live.fanmingming.com/tv/m3u/ipv6.m3u",
     "https://raw.githubusercontent.com/yuanzl77/IPTV/main/直播/央视频道.txt",
-    "http://120.79.4.185/new/mdlive.txt",
     "https://live.zhoujie218.top/tv/iptv6.txt",
     "https://tv.youdu.fan:666/live/",
     "http://ww.weidonglong.com/dsj.txt",
@@ -42,9 +41,6 @@ source_urls = [
     "http://kxrj.site:55/lib/kx2024.txt",
     "https://raw.githubusercontent.com/altn2025/iptv/main/iptv.m3u",
     "https://2912.kstore.space/520.txt",
-    "https://raw.githubusercontent.com/frxz751113/IPTVzb1/refs/heads/main/{MMdd}%E7%BB%BC%E5%90%88%E6%BA%90.txt",
-    "https://raw.githubusercontent.com/frxz751113/IPTVzb1/refs/heads/main/{MMdd-1}%E7%BB%BC%E5%90%88%E6%BA%90.txt",
-    "https://d.kstore.space/download/7395/xiaohei.txt",
     "http://home.jundie.top:81/Cat/tv/live.txt",
     "https://raw.githubusercontent.com/YanG-1989/m3u/refs/heads/main/Gather.m3u",
     "https://raw.githubusercontent.com/BP3388/BP001.github.io/main/tivi.list",
@@ -57,7 +53,6 @@ source_urls = [
     "https://m3u.ibert.me/txt/ycl_iptv.txt",
     "https://m3u.ibert.me/txt/y_g.txt",
     "https://m3u.ibert.me/txt/j_home.txt",
-    "http://vip.vip0531.com/viptv/live202405.txt",
     "https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt",
     "https://gitee.com/xxy002/zhiboyuan/raw/master/zby.txt",
     "https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt",
@@ -79,6 +74,11 @@ source_urls = [
     "http://154.9.252.167:190/tvlive.txt",
     "https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt",
     "https://raw.githubusercontent.com/fanmingming/live/refs/heads/main/tv/m3u/ipv6.m3u",
+    # "https://raw.githubusercontent.com/frxz751113/IPTVzb1/refs/heads/main/{MMdd}%E7%BB%BC%E5%90%88%E6%BA%90.txt",
+    # "https://raw.githubusercontent.com/frxz751113/IPTVzb1/refs/heads/main/{MMdd-1}%E7%BB%BC%E5%90%88%E6%BA%90.txt",
+    # "https://d.kstore.space/download/7395/xiaohei.txt",
+    # "http://vip.vip0531.com/viptv/live202405.txt",
+    # "http://120.79.4.185/new/mdlive.txt",
     # --https://raw.githubusercontent.com/zzj2678/IPTVzb1/refs/heads/main/iptv_list.txt
     # --https://4gtv.mytvsuper.xyz/myiptv.m3u
     # --https://gongdian.top/tv/gongdian.txt

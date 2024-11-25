@@ -140,14 +140,22 @@ def filter_source_urls(template_file):
                     except concurrent.futures.TimeoutError:
                         logging.info(f"url: {url} Processing took too long")
                     pbar.update(1)
+                    logging.info("\n")
                     logging.info(pbar.__str__())
             except concurrent.futures.TimeoutError:
                 logging.info(f"url: {url} Processing took too long")
 
             finally:
                 pbar.close()
+                logging.info("\n")
                 logging.info(pbar.__str__())
 
+    with open("all_channels.txt", "w", encoding="utf-8") as f_all_channels:
+        if all_channels:
+            for channel in all_channels:
+                f_all_channels.write(f"{channel},#genre#\n")
+                for e in all_channels[channel]:
+                    f_all_channels.write(f"{e[0]},\n")
     matched_channels = match_channels(template_channels, all_channels, rename_dic)
 
     return matched_channels, template_channels
@@ -177,11 +185,12 @@ def update_channel_urls_m3u(channels, template_channels):
                     if category not in channels:
                         continue
                     for channel_name in channel_list:
-                        # 渠道不数据要操作的渠道列表则跳过
+                        # 渠道名字不在所需要的渠道列表上，则跳过
                         if channel_name not in channels[category]:
                             continue
                         # 讲指定的数据排序到最前面 由于 ip_version_priority决定
-                        sorted_urls = sorted(channels[category][channel_name], key=lambda url: not is_ipv6(url) if config.ip_version_priority == "ipv6" else is_ipv6(url))
+                        sorted_urls = sorted(channels[category][channel_name], key=lambda url:
+                            not is_ipv6(url) if config.ip_version_priority == "ipv6" else is_ipv6(url))
                         filtered_urls = []
                         future_concurrents = {}
                         for url in sorted_urls:

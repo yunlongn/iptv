@@ -6,6 +6,7 @@ import requests
 import logging
 
 import config.config
+from main import is_ipv6
 
 cache = {}
 
@@ -17,6 +18,9 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, ff
     if url in cache:
         return cache[url]
     if config.config.notCheck == 1:
+        cache[url] = (True, None)
+        return True, None
+    if is_ipv6(url):
         cache[url] = (True, None)
         return True, None
 
