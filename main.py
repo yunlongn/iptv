@@ -94,8 +94,18 @@ def match_channels(template_channels, all_channels, rename_dic):
     for category, channel_list in template_channels.items():
         matched_channels[category] = OrderedDict()
         for channel_name in channel_list:
+            if ';' in channel_name:
+                like_matched = 1
+            else:
+                like_matched = 0
             for online_category, online_channel_list in all_channels.items():
                 for online_channel_name, online_channel_url in online_channel_list:
+                    # 如果名字中带有 ; 号 命中模糊匹配规则
+                    if like_matched == 1:
+                        split_channel_name = channel_name.split(';')
+                        if split_channel_name[0].upper() in online_channel_name.upper() and split_channel_name[1].upper() in online_channel_name.upper():
+                            matched_channels[category].setdefault(channel_name, []).append(online_channel_url)
+
                     # 纠错频道名称
                     if online_channel_name in rename_dic and online_channel_name != rename_dic[online_channel_name]:
                         online_channel_name = rename_dic[online_channel_name]
