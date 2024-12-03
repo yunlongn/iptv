@@ -233,9 +233,13 @@ def update_channel_urls_m3u(channels, template_channels):
                             #     logging.error(f"Failed to play {url} {error}")
 
                         except concurrent.futures.TimeoutError:
-                            logging.info(f"url: {url} Processing took too long")
-                except concurrent.futures.TimeoutError:
-                    logging.info(f"url: {url} Processing took too long")
+                            logging.info(f"url: {url} for Processing took too long")
+                        except Exception as e:
+                            logging.info(f"url: {url} for Exception")
+                except concurrent.futures.TimeoutError as e:
+                    logging.info(f"url: {url} TimeoutError {e}")
+                except Exception as e:
+                    logging.info(f"url: {url} Exception {e}")
 
                 for category, channel_list in check_return_channels.items():
                     f_txt.write(f"{category},#genre#\n")
