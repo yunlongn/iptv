@@ -214,10 +214,9 @@ def update_channel_urls_m3u(channels, template_channels):
                             future_concurrents[future] = (index, url, channel_name, category)
 
                 try:
-                    for future in concurrent.futures.as_completed(future_concurrents,
-                                                                  timeout=config.ffmpegCheckThreadTimeout):
-                        (index, url, channel_name, category) = future_concurrents[future]
+                    for future in concurrent.futures.as_completed(future_concurrents):
                         try:
+                            (index, url, channel_name, category) = future_concurrents[future]
                             success, error, time = future.result(config.ffmpegCheckThreadTimeout)
                             if category not in check_return_channels:
                                 check_return_channels[category] = OrderedDict()
@@ -235,7 +234,7 @@ def update_channel_urls_m3u(channels, template_channels):
                         except concurrent.futures.TimeoutError:
                             logging.info(f"url: {url} for Processing took too long")
                         except Exception as e:
-                            logging.info(f"url: {url} for Exception")
+                            logging.info(f"url: {url} for Exception {e}")
                 except concurrent.futures.TimeoutError as e:
                     logging.info(f"url: {url} TimeoutError {e}")
                 except Exception as e:
