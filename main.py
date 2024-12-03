@@ -249,8 +249,7 @@ def update_channel_urls_m3u(channels, template_channels):
                             continue
 
                         # 讲指定的数据排序到最前面 由于 ip_version_priority决定
-                        sorted_urls = sorted(check_return_channels[category][channel_name], key=lambda check_return_item: not is_ipv6(check_return_item[0]) if config.ip_version_priority == "ipv6" else is_ipv6(check_return_item[0]))
-                        sorted_urls = sorted(sorted_urls, key=lambda check_return_item: check_return_item[1])
+                        sorted_urls = sorted(check_return_channels[category][channel_name], key=lambda check_return_item:(not is_ipv6(check_return_item[0]) if config.ip_version_priority == "ipv6" else is_ipv6(check_return_item[0]), check_return_item[1]))
                         total_urls = len(sorted_urls)
                         if total_urls >= 1:
                             f_m3u.write(f"#EXTINF:-1 tvg-name=\"{channel_name}\" tvg-logo=\"https://live.fanmingming.com/tv/{channel_name}.png\" group-title=\"{category}\",{channel_name}\n")
