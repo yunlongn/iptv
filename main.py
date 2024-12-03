@@ -257,10 +257,11 @@ def update_channel_urls_m3u(channels, template_channels):
 
                         for index, url_item in enumerate(sorted_urls, start=1):
                             url = url_item[0]
+                            req_time = round(url_item[1], 3)
                             if is_ipv6(url):
-                                url_suffix = f"$LR•IPV6" if total_urls == 1 else f"$IPV6•线路{index}"
+                                url_suffix = f"$LR•IPV6{req_time}" if total_urls == 1 else f"$IPV6•线路{index}-{req_time}"
                             else:
-                                url_suffix = f"$LR•IPV4" if total_urls == 1 else f"$IPV4•线路{index}"
+                                url_suffix = f"$LR•IPV4{req_time}" if total_urls == 1 else f"$IPV4•线路{index}-{req_time}"
                             if '$' in url:
                                 base_url = url.split('$', 1)[0]
                             else:
