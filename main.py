@@ -10,7 +10,7 @@ import tqdm
 import ffmpeg_util
 from config import config
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler("logs/fetch.log", "w", encoding="utf-8"), logging.StreamHandler()])
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(threadName)s - %(message)s', handlers=[logging.FileHandler("logs/fetch.log", "w", encoding="utf-8"), logging.StreamHandler()])
 
 def parse_template(template_file):
     template_channels = OrderedDict()
