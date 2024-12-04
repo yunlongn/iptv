@@ -4,12 +4,14 @@ import subprocess
 import requests
 import logging
 import warnings
+from urllib.parse import urlsplit
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(threadName)s - %(message)s', handlers=[logging.FileHandler("invalid_urls.log", "w", encoding="utf-8"), logging.StreamHandler()])
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(threadName)s - %(message)s', handlers=[logging.FileHandler("error_urls_log", "w", encoding="utf-8"), logging.StreamHandler()])
 
 if __name__ == "__main__":
-    with open("invalid_urls", 'r', encoding='utf-8') as f:
+    with open("error_urls", 'r', encoding='utf-8') as f:
         future_to_url = {}
+        invalid_hosts = set()
         warnings.filterwarnings('ignore')
         with concurrent.futures.ThreadPoolExecutor(max_workers = 512) as executor:
             for url in f:
@@ -32,9 +34,16 @@ if __name__ == "__main__":
                         url = future_to_url[future]
                         response = future.result(600)
                         if response.status_code != 200 and response.status_code != 403:
+                            hostname = urlsplit(url).hostname
+                            if hostname not in invalid_hosts:
+                                invalid_hosts.add(hostname)
                             logging.error(f"Invalid status code {url} code {response.status_code}")
 
                     except Exception as e:
-                        logging.info(f"url: {url} Processing took too long")
+                        logging.info(f"url: {url} Processing took too long {e}")
             except Exception as e:
                 logging.info(f"url: {url} Processing took too long {e}")
+
+            with open("config/error_urls_host_log", "w", encoding="utf-8") as error_urlsf:
+                for invalid_host in invalid_hosts:
+                    error_urlsf.write(f"{invalid_host}\n")
