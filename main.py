@@ -286,9 +286,9 @@ def update_channel_urls_m3u(channels, template_channels):
         for invalid_host in invalid_hosts:
             error_host.write(f"{invalid_host}\n")
 
-    with open("config/invalid_urls", "w", encoding="utf-8") as invalid_urlf:
+    with open("config/error_urls", "w", encoding="utf-8") as error_urlsf:
         for invalid_host in invalid_urls:
-            invalid_urlf.write(f"{invalid_host}\n")
+            error_urlsf.write(f"{invalid_host}\n")
 
 
 

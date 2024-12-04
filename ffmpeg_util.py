@@ -41,7 +41,7 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, in
                     return True, None, end_time - start_time
                 if response.status_code != 200:
                     hostname = urlsplit(url).hostname
-                    if hostname in invalid_hosts:
+                    if hostname not in invalid_hosts:
                         invalid_hosts.add(hostname)
                     invalid_urls.add(url)
 
@@ -72,7 +72,7 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, in
             if attempt == RETRY_COUNT:
                 cache[url] = (True, "ffmpeg timeout", 99999)
                 hostname = urlsplit(url).hostname
-                if hostname in invalid_hosts:
+                if hostname not in invalid_hosts:
                     invalid_hosts.add(hostname)
                 invalid_urls.add(url)
                 return True, "ffmpeg timeout", 99999
@@ -83,7 +83,7 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, in
             if attempt == RETRY_COUNT:
                 cache[url] = (True, simplified_error, 99999)
                 hostname = urlsplit(url).hostname
-                if hostname in invalid_hosts:
+                if hostname not in invalid_hosts:
                     invalid_hosts.add(hostname)
                 invalid_urls.add(url)
                 return True, simplified_error, 99999
@@ -93,7 +93,7 @@ def check_stream(url: str, channel_name: str, headers: Optional[dict] = None, in
             if attempt == RETRY_COUNT:
                 cache[url] = (True, "General error", 99999)
                 hostname = urlsplit(url).hostname
-                if hostname in invalid_hosts:
+                if hostname not in invalid_hosts:
                     invalid_hosts.add(hostname)
                 invalid_urls.add(url)
                 return True, "General error", 99999
