@@ -175,6 +175,7 @@ def is_ipv6(url):
 
 def update_channel_urls_m3u(channels, template_channels):
     written_urls = set()
+    invalid_hosts = set()
     invalid_urls = set()
     check_return_channels = OrderedDict()
     channel_url_time = OrderedDict()
@@ -210,7 +211,7 @@ def update_channel_urls_m3u(channels, template_channels):
                                 filtered_urls.append(url)
                                 written_urls.add(url)
                         for index, url in enumerate(filtered_urls, start=1):
-                            future = executor.submit(ffmpeg_util.check_stream, url, channel_name, {}, invalid_urls, 60)
+                            future = executor.submit(ffmpeg_util.check_stream, url, channel_name, {}, invalid_hosts, invalid_urls, 60)
                             future_concurrents[future] = (index, url, channel_name, category)
 
                 try:
@@ -220,16 +221,12 @@ def update_channel_urls_m3u(channels, template_channels):
                             success, error, time = future.result(config.ffmpegCheckThreadTimeout)
                             if category not in check_return_channels:
                                 check_return_channels[category] = OrderedDict()
-                            check_return_channels[category].setdefault(channel_name, []).append((url, time))
-                            channel_url_time[url] = time
 
-                            # if success:
-                            #     if category not in check_return_channels:
-                            #         check_return_channels[category] = OrderedDict()
-                            #     check_return_channels[category].setdefault(channel_name, []).append((url, time))
-                            #     channel_url_time[url] = time
-                            # else:
-                            #     logging.error(f"Failed to play {url} {error}")
+                            if success:
+                                check_return_channels[category].setdefault(channel_name, []).append((url, time))
+                                channel_url_time[url] = time
+                            else:
+                                logging.error(f"Failed to play {url} {error}")
 
                         except concurrent.futures.TimeoutError:
                             logging.info(f"url: {url} for Processing took too long")
@@ -286,8 +283,12 @@ def update_channel_urls_m3u(channels, template_channels):
 
     with open("config/error_host", "w", encoding="utf-8") as error_host:
         error_host.write(f"check_return_channels len {len(channel_url_time)} \n")
-        for invalid_url in invalid_urls:
-            error_host.write(f"{invalid_url}\n")
+        for invalid_host in invalid_hosts:
+            error_host.write(f"{invalid_host}\n")
+
+    with open("config/invalid_urls", "w", encoding="utf-8") as invalid_urlf:
+        for invalid_host in invalid_urls:
+            invalid_urlf.write(f"{invalid_host}\n")
 
 
 
