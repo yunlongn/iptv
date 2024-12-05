@@ -10,6 +10,8 @@ source_urls = [
     "http://175.178.251.183:6689/aktvlive.txt",
     "https://live.fanmingming.com/tv/m3u/ipv6.m3u",
     "https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt",
+    "https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u",
+    "https://raw.githubusercontent.com/YueChan/Live/main/IPTV.m3u",
     "https://raw.githubusercontent.com/yuanzl77/IPTV/main/直播/央视频道.txt",
     "https://raw.githubusercontent.com/yuanzl77/IPTV/main/live.txt",
     "https://live.zhoujie218.top/tv/iptv6.txt",
