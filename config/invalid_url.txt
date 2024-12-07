@@ -1,2 +1,3 @@
 https://www.mytvsuper.xyz/m3u/Live.m3u
+https://raw.githubusercontent.com/kimwang1978/TV/master/output/result.txt
 https://gitea.moe/Fathers/EkfkgH/raw/branch/main/yyfug.txt
