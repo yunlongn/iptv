@@ -1,13 +1,13 @@
 http://kxrj.site:567/gggg.nzk
 http://kxrj.site:55/lib/kx2024.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
-https://www.mytvsuper.xyz/m3u/Live.m3u
+https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt
 https://gitea.moe/Fathers/EkfkgH/raw/branch/main/yyfug.txt
 http://154.9.252.167:190/tvlive.txt
-https://2912.kstore.space/520.txt
+https://www.mytvsuper.xyz/m3u/Live.m3u
 https://10085.kstore.space/%E8%93%9D%E5%A4%A9%E7%99%BD%E4%BA%91.txt
-http://xn--ur0a.xn--dkw.xn--6qq986b3xl/down.php/a7c9d038627e11f037adcad788da129e.txt
+https://2912.kstore.space/520.txt
 https://raw.gitcode.com/hjf520/00/raw/main/sirenzb.txt
+http://xn--ur0a.xn--dkw.xn--6qq986b3xl/down.php/a7c9d038627e11f037adcad788da129e.txt
 https://gitee.com/xxy002/zhiboyuan/raw/master/zby.txt
-http://rihou.cc:555/gggg.nzk
 http://47.99.102.252/live.txt
