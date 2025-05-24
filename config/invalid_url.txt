@@ -1,11 +1,12 @@
 http://ttkx.cc:55/lib/kx2024.txt
-http://kxrj.site:567/gggg.nzk
-http://kxrj.site:55/lib/kx2024.txt
-https://www.mytvsuper.xyz/m3u/Live.m3u
+https://live.fanmingming.com/tv/m3u/ipv6.m3u
 https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt
+https://www.mytvsuper.xyz/m3u/Live.m3u
+http://kxrj.site:55/lib/kx2024.txt
+http://kxrj.site:567/gggg.nzk
+https://gitea.moe/Fathers/EkfkgH/raw/branch/main/yyfug.txt
 http://xhztv.top/zbc.txt
 http://xhztv.top/v6.txt
-https://gitea.moe/Fathers/EkfkgH/raw/branch/main/yyfug.txt
 https://2912.kstore.space/520.txt
 https://10085.kstore.space/%E8%93%9D%E5%A4%A9%E7%99%BD%E4%BA%91.txt
 http://ww.weidonglong.com/dsj.txt
