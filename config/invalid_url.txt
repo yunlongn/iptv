@@ -1,6 +1,7 @@
 https://www.mytvsuper.xyz/m3u/Live.m3u
 https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt
+http://rihou.cc:567/gggg.nzk
 http://xhztv.top/v6.txt
 http://rihou.cc:555/gggg.nzk
 https://aktv.top/live.m3u
-http://rihou.cc:567/gggg.nzk
+http://home.jundie.top:81/Cat/tv/live.txt
