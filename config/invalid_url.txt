@@ -1,4 +1,3 @@
-https://www.mytvsuper.xyz/m3u/Live.m3u
 https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt
 https://aktv.top/live.m3u
 http://xhztv.top/v6.txt
