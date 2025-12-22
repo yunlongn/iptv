@@ -2,3 +2,4 @@ https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt
 https://www.mytvsuper.xyz/m3u/Live.m3u
 http://xhztv.top/v6.txt
 http://home.jundie.top:81/Cat/tv/live.txt
+https://gitee.com/tushaoyong/live/raw/master/%E6%8E%A5%E5%8F%A3/IPV6.txt
