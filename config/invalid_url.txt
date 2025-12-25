@@ -1,4 +1,4 @@
+https://www.mytvsuper.xyz/m3u/Live.m3u
 https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt
 http://xhztv.top/v6.txt
-https://www.mytvsuper.xyz/m3u/Live.m3u
 http://home.jundie.top:81/Cat/tv/live.txt
