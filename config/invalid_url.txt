@@ -1,6 +1,8 @@
 https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt
 https://live.fanmingming.com/tv/m3u/ipv6.m3u
-http://xhztv.top/v6.txt
 https://www.mytvsuper.xyz/m3u/Live.m3u
+http://xhztv.top/v6.txt
 http://ww.weidonglong.com/dsj.txt
 http://home.jundie.top:81/Cat/tv/live.txt
+http://rihou.cc:555/gggg.nzk
+http://rihou.cc:567/gggg.nzk
