@@ -8,6 +8,7 @@ notCheck = 0 # 是否不检查地址
 source_urls = [
     "https://aktv.top/live.m3u",
     "https://live.fanmingming.com/tv/m3u/ipv6.m3u",
+    "https://raw.githubusercontent.com/zilong7728/Collect-IPTV/refs/heads/main/best_sorted.m3u8",
     "https://live.zhoujie218.top/tv/iptv6.txt",
     "http://ww.weidonglong.com/dsj.txt",
     "http://home.jundie.top:81/Cat/tv/live.txt",
