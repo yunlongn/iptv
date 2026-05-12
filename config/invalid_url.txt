@@ -1,7 +1,8 @@
-https://raw.githubusercontent.com/PizazzGY/TVBox/main/live.txt
 https://raw.githubusercontent.com/PizazzGY/TVBox_warehouse/main/live.txt
-https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt
-https://www.mytvsuper.xyz/m3u/Live.m3u
 http://xhztv.top/v6.txt
+https://raw.githubusercontent.com/PizazzGY/TVBox/main/live.txt
+https://www.mytvsuper.xyz/m3u/Live.m3u
+https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt
 http://ww.weidonglong.com/dsj.txt
 http://home.jundie.top:81/Cat/tv/live.txt
+https://cdn.jsdelivr.net/gh/YueChan/live@main/IPTV.m3u
